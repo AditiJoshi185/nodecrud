@@ -6,6 +6,7 @@ const config = require('./../../../config/index');
 const userService = require('./../services/userServices');
 const authenticator = require('./../../../middlewares/authenticator');
 const awsService = require('./../../../services/aws');
+const crypt = require('./../../../services/crypt');
 
 async function addUser(req, res) {
   try {
@@ -15,6 +16,7 @@ async function addUser(req, res) {
       return res.status(409).send({ msg: 'Email exists' });
     }
     let id = uuidv4();
+    password = crypt.createHash(password);
     await userService.addUser({ id, email, first_name, last_name, password });
     let token = authenticator.generateToken({ id });
     return res.send({ msg: 'Success', token });
