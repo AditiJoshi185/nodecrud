@@ -16,4 +16,11 @@ exports.default = {
     publicKey: process.env.JWT_PUBLIC_KEY,
     secretKey: process.env.JWT_SECRET_KEY,
   },
+  s3:{
+    BUCKET:process.env.S3BUCKET,
+    URL:process.env.S3URL,
+    ACCESS_KEY_ID : process.env.S3ACCESSKEYID,
+    SECRET_ACCESS_KEY : process.env.S3SECRETACCESSKEY,
+    REGION:process.env.S3REGION,
+  }
 };

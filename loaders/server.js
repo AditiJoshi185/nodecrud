@@ -6,7 +6,7 @@ function createServer(port) {
       console.log("---SERVER STARTED---", port);
       return resolve();
     });
-  })
+  });
 }
 
 exports.createServer = createServer;
