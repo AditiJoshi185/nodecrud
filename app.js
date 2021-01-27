@@ -9,6 +9,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 
 require('./modules/users');
 
+// Start all services and server
 loaders.initialize();
 
 process.on('unhandledRejection',function(err){

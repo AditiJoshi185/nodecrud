@@ -43,7 +43,7 @@ async function updateUser(req, res, next) {
     last_name: Joi.string().optional(),
     email: Joi.string().optional(),
     password: Joi.string().optional(),
-  }).or('first_name','last_name','email', 'password');
+  }).or('first_name','last_name','email', 'password'); // atleast one key is necessary
   const validBody = await validator.validateFields(bodySchema, req.body);
   const headerSchema = Joi.object({
     token: Joi.string().required(),

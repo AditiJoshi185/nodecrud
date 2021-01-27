@@ -16,6 +16,7 @@ async function addUser(req, res) {
       return res.status(409).send({ msg: 'Email exists' });
     }
     let id = uuidv4();
+    // encrypt password before storing
     password = crypt.createHash(password);
     await userService.addUser({ id, email, first_name, last_name, password });
     let token = authenticator.generateToken({ id });
