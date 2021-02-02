@@ -1,14 +1,19 @@
 var multipart                              = require('connect-multiparty');
 var multipartMiddleware                    = multipart();
 
+const express = require('express');
+const router = express.Router();
+
 const userController = require('./controller/userController');
 const userValidator = require('./validator/userValidator');
 const authenticator = require('./../../middlewares/authenticator');
 
-app.post('/user', userValidator.addUser, userController.addUser);
-app.get('/user', userValidator.getUser, authenticator.authenticate, userController.getUser);
-app.delete('/user', userValidator.deleteUser, authenticator.authenticate,userController.deleteUser);
-app.patch('/user', userValidator.updateUser, authenticator.authenticate,userController.updateUser);
+router.post('/', userValidator.addUser, userController.addUser);
+router.get('/', userValidator.getUser, authenticator.authenticate, userController.getUser);
+router.delete('/', userValidator.deleteUser, authenticator.authenticate,userController.deleteUser);
+router.patch('/', userValidator.updateUser, authenticator.authenticate,userController.updateUser);
 
-app.post('/user/image',userValidator.addImage, multipartMiddleware, authenticator.authenticate, userController.addImage);
-app.get('/user/image', userValidator.getImage, authenticator.authenticate, userController.getImage);
+router.post('/image',userValidator.addImage, multipartMiddleware, authenticator.authenticate, userController.addImage);
+router.get('/image', userValidator.getImage, authenticator.authenticate, userController.getImage);
+
+module.exports = router;
